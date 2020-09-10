@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./build/client",
+    "jsx": "react",
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "removeComments": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  },
+  "exclude": ["**/*.spec.ts", "**/node_modules/**"]
+}
