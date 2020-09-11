@@ -8,7 +8,7 @@ export default {
   output: {
     path: resolve(__dirname, '..', '..', '..', 'build/client'),
     filename: '[name].[contenthash].js',
-    publicPath: '/'
+    publicPath: '/',
   },
   devtool: 'inline-source-map',
   module: {
@@ -16,11 +16,15 @@ export default {
       {
         test: /\.(js|jsx|ts|tsx)$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.svg$/,
-        use: 'file-loader'
+        use: 'file-loader',
       },
       {
         test: /\.png$/,
@@ -28,25 +32,25 @@ export default {
           {
             loader: 'url-loader',
             options: {
-              mimetype: 'image/png'
-            }
-          }
-        ]
-      }
-    ]
+              mimetype: 'image/png',
+            },
+          },
+        ],
+      },
+    ],
   },
   resolve: {
     extensions: ['.js', '.jsx', '.tsx', '.ts'],
     alias: {
-      'react-dom': '@hot-loader/react-dom'
-    }
+      'react-dom': '@hot-loader/react-dom',
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: require('html-webpack-template'),
       appMountId: 'root',
-      title: 'Movies'
+      title: 'Movies',
     }),
-    new CleanWebpackPlugin()
-  ]
+    new CleanWebpackPlugin(),
+  ],
 } as Configuration;

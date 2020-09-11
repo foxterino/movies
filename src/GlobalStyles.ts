@@ -1,5 +1,4 @@
 import { css } from '@emotion/core';
-import { darkColors, lightColors } from './Theme/Colors';
 
 export const GlobalStyles = css`
   html,
@@ -98,8 +97,6 @@ export const GlobalStyles = css`
     display: block;
   }
   body {
-    background-color: ${darkColors.darkToneInk};
-    color: ${lightColors.white};
     font-family: Poppins, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
       'Helvetica Neue', Arial, sans-serif;
     line-height: 1;
