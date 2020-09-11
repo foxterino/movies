@@ -6,8 +6,9 @@ import { useSetRecoilState } from 'recoil';
 import { SignInStyles as S } from './Styles';
 import { AuthService } from '../../Service/auth';
 import { isAuthorizedState } from '../../State/Auth';
+import { ISignUpValues } from '../../Api/Types/Auth';
 
-const singUpValues = {
+const singUpValues: ISignUpValues = {
   email: '',
   username: '',
   password: '',
@@ -72,9 +73,8 @@ const SignUp: React.FC = () => {
         <S.SubmitButton
           block
           type="primary"
-          loading={isLoading}
+          loading={isLoading || isSubmitting}
           htmlType="submit"
-          disabled={isSubmitting}
         >
           Sign Up
         </S.SubmitButton>

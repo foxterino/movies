@@ -64,8 +64,7 @@ const SignIn: React.FC = () => {
       <S.SubmitButton
         block
         type="primary"
-        loading={isLoading}
-        disabled={isSubmitting}
+        loading={isLoading || isSubmitting}
         htmlType="submit"
       >
         Sign In

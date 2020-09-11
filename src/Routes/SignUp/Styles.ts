@@ -8,9 +8,6 @@ export const SignInStyles = {
   Input: styled(Input)`
     margin-bottom: 1.25rem;
   `,
-  PasswordInput: styled(Input.Password)`
-    margin-bottom: 1.25rem;
-  `,
   SubmitButton: styled(Button)`
     margin-bottom: 0.75rem;
   `,
