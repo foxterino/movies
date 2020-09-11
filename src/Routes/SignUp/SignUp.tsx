@@ -15,6 +15,8 @@ const singUpValues = {
 
 const SignUp: React.FC = () => {
   const setAuthorized = useSetRecoilState(isAuthorizedState);
+
+  const [isLoading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const {
@@ -26,6 +28,7 @@ const SignUp: React.FC = () => {
   } = useFormik({
     initialValues: singUpValues,
     onSubmit: async (credentials, actions) => {
+      setLoading(true);
       actions.setSubmitting(false);
 
       try {
@@ -35,6 +38,8 @@ const SignUp: React.FC = () => {
       } catch (error) {
         setErrorMessage(error.message);
       }
+
+      setLoading(false);
     },
   });
 
@@ -67,6 +72,7 @@ const SignUp: React.FC = () => {
         <S.SubmitButton
           block
           type="primary"
+          loading={isLoading}
           htmlType="submit"
           disabled={isSubmitting}
         >

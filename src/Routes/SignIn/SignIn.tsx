@@ -15,6 +15,8 @@ const singInValues: ISignInValues = {
 
 const SignIn: React.FC = () => {
   const setAuthorized = useSetRecoilState(isAuthorizedState);
+
+  const [isLoading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const {
@@ -26,6 +28,7 @@ const SignIn: React.FC = () => {
   } = useFormik({
     initialValues: singInValues,
     onSubmit: async (credentials, actions) => {
+      setLoading(true);
       actions.setSubmitting(false);
 
       try {
@@ -35,6 +38,8 @@ const SignIn: React.FC = () => {
       } catch (error) {
         setErrorMessage(error.message);
       }
+
+      setLoading(false);
     },
   });
 
@@ -59,6 +64,7 @@ const SignIn: React.FC = () => {
       <S.SubmitButton
         block
         type="primary"
+        loading={isLoading}
         disabled={isSubmitting}
         htmlType="submit"
       >
