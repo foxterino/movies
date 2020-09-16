@@ -24,6 +24,7 @@ export const get = <T = any>(url: string) =>
   fetch<T>({
     url,
     baseURL,
+    withCredentials: true,
   });
 
 export const post = <T = any>(
@@ -37,6 +38,7 @@ export const post = <T = any>(
     method: 'POST',
     data,
     baseURL,
+    withCredentials: true,
   });
 
 export const put = <T = any>(url: string, data: object) =>
@@ -45,6 +47,7 @@ export const put = <T = any>(url: string, data: object) =>
     method: 'PUT',
     data,
     baseURL,
+    withCredentials: true,
   });
 
 export const del = <T = any>(url: string) =>
@@ -52,4 +55,5 @@ export const del = <T = any>(url: string) =>
     url,
     method: 'DELETE',
     baseURL,
+    withCredentials: true,
   });

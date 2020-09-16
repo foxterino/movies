@@ -1,4 +1,4 @@
-import { AuthApi } from '../Api/Auth';
+import { AuthApi } from '../Api/AuthApi';
 import { ISignInValues, ISignUpValues } from '../Api/Types/Auth';
 
 const signUp = (credentials: ISignUpValues) => AuthApi.signUp(credentials);

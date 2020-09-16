@@ -4,9 +4,9 @@ import { Routes } from '../Routes';
 import { Link } from '@reach/router';
 import { useSetRecoilState } from 'recoil';
 import { SignInStyles as S } from './Styles';
-import { AuthService } from '../../Service/auth';
 import { isAuthorizedState } from '../../State/Auth';
 import { ISignUpValues } from '../../Api/Types/Auth';
+import { AuthService } from '../../Service/AuthService';
 
 const singUpValues: ISignUpValues = {
   email: '',
