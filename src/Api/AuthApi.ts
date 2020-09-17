@@ -1,4 +1,4 @@
-import { post } from './index';
+import { del, post } from './index';
 import { ISignUpValues, IAuthResponse, ISignInValues } from './Types/Auth';
 
 const signUp = (credentials: ISignUpValues): Promise<IAuthResponse> =>
@@ -7,7 +7,10 @@ const signUp = (credentials: ISignUpValues): Promise<IAuthResponse> =>
 const signIn = (credentials: ISignInValues): Promise<IAuthResponse> =>
   post('/auth/signin', credentials);
 
+const signOut = (): Promise<void> => del('/auth/signout');
+
 export const AuthApi = {
   signUp,
   signIn,
+  signOut,
 };

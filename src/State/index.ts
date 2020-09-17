@@ -1,4 +1,4 @@
-import { RootState, rootReducer } from './ducks';
+import { RootState, rootReducer } from './Ducks';
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 
 const createStore = () => {

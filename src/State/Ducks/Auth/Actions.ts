@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
 import { AuthApi } from '../../../Api/AuthApi';
-import { authFailure, authSuccess, processAuth } from './Slice';
 import { ISignInValues, ISignUpValues } from '../../../Api/Types/Auth';
+import { authFailure, authSuccess, processAuth, logoutSuccess } from './Slice';
 
 export const signUp = (credentials: ISignUpValues) => async (
   dispatch: Dispatch<any>,
@@ -29,4 +29,10 @@ export const signIn = (credentials: ISignInValues) => async (
   } catch (error) {
     dispatch(authFailure(error));
   }
+};
+
+export const signOut = () => async (dispatch: Dispatch<any>) => {
+  await AuthApi.signOut();
+
+  dispatch(logoutSuccess());
 };

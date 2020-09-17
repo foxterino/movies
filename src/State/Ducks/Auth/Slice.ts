@@ -26,10 +26,17 @@ const auth = createSlice({
     resetError: state => {
       state.error = null;
     },
+    logoutSuccess: () => initialState,
   },
 });
 
 const { actions, reducer } = auth;
 
-export const { authFailure, authSuccess, processAuth, resetError } = actions;
+export const {
+  authFailure,
+  authSuccess,
+  processAuth,
+  resetError,
+  logoutSuccess,
+} = actions;
 export const authReducer = reducer;
