@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { Routes } from '../Routes';
 import { Link } from '@reach/router';
-import { useSetRecoilState } from 'recoil';
 import { SignInStyles as S } from './Styles';
-import { isAuthorizedState } from '../../State/Auth';
 import { ISignUpValues } from '../../Api/Types/Auth';
-import { AuthService } from '../../Service/AuthService';
+import { useDispatch, useSelector } from 'react-redux';
+import { authSelectors, resetError, signUp } from '../../State/ducks/Auth';
 
 const singUpValues: ISignUpValues = {
   email: '',
@@ -15,40 +14,29 @@ const singUpValues: ISignUpValues = {
 };
 
 const SignUp: React.FC = () => {
-  const setAuthorized = useSetRecoilState(isAuthorizedState);
+  const isLoading = useSelector(authSelectors.isLoading);
+  const error = useSelector(authSelectors.error);
 
-  const [isLoading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const dispatch = useDispatch();
 
-  const {
-    handleSubmit,
-    handleBlur,
-    handleChange,
-    isSubmitting,
-    values,
-  } = useFormik({
+  const { handleSubmit, handleBlur, handleChange, values } = useFormik({
     initialValues: singUpValues,
-    onSubmit: async (credentials, actions) => {
-      setLoading(true);
-      actions.setSubmitting(false);
-
-      try {
-        await AuthService.signUp(credentials);
-
-        setAuthorized(true);
-      } catch (error) {
-        setErrorMessage(error.message);
-      }
-
-      setLoading(false);
+    onSubmit: credentials => {
+      dispatch(signUp(credentials));
     },
   });
 
-  const resetErrorMessage = () => setErrorMessage('');
+  useEffect(() => {
+    return () => {
+      dispatch(resetError());
+    };
+  }, [dispatch]);
+
+  const handleResetError = () => dispatch(resetError());
 
   return (
     <div>
-      <S.Form onChange={resetErrorMessage} onSubmit={handleSubmit}>
+      <S.Form onChange={handleResetError} onSubmit={handleSubmit}>
         <S.Input
           name="email"
           value={values.email}
@@ -63,7 +51,7 @@ const SignUp: React.FC = () => {
           onChange={handleChange}
           onBlur={handleBlur}
         />
-        <S.Input
+        <S.PasswordInput
           name="password"
           value={values.password}
           placeholder="Password"
@@ -73,12 +61,12 @@ const SignUp: React.FC = () => {
         <S.SubmitButton
           block
           type="primary"
-          loading={isLoading || isSubmitting}
+          loading={isLoading}
           htmlType="submit"
         >
           Sign Up
         </S.SubmitButton>
-        {errorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
+        {error && <S.ErrorMessage>{error.message}</S.ErrorMessage>}
         Already have an account?
         <Link to={Routes.SignIn}> Sign In</Link>
       </S.Form>

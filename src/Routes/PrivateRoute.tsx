@@ -1,7 +1,7 @@
 import React, { ComponentType } from 'react';
 import { Routes } from './Routes';
-import { useRecoilValue } from 'recoil';
-import { isAuthorizedState } from '../State/Auth';
+import { useSelector } from 'react-redux';
+import { authSelectors } from '../State/ducks/Auth';
 import { RouteComponentProps, Redirect } from '@reach/router';
 
 interface IPrivateRoute extends RouteComponentProps {
@@ -9,7 +9,7 @@ interface IPrivateRoute extends RouteComponentProps {
 }
 
 const PrivateRoute = ({ component: Component }: IPrivateRoute) => {
-  const isAuthorized = useRecoilValue(isAuthorizedState);
+  const isAuthorized = useSelector(authSelectors.isAuthorized);
 
   return isAuthorized ? <Component /> : <Redirect noThrow to={Routes.SignIn} />;
 };

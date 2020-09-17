@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { Routes } from '../Routes';
 import { Link } from '@reach/router';
-import { useSetRecoilState } from 'recoil';
 import { SignInStyles as S } from './Styles';
-import { isAuthorizedState } from '../../State/Auth';
 import { ISignInValues } from '../../Api/Types/Auth';
-import { AuthService } from '../../Service/AuthService';
+import { useSelector, useDispatch } from 'react-redux';
+import { authSelectors, resetError, signIn } from '../../State/ducks/Auth';
 
 const singInValues: ISignInValues = {
   username: '',
@@ -14,39 +13,28 @@ const singInValues: ISignInValues = {
 };
 
 const SignIn: React.FC = () => {
-  const setAuthorized = useSetRecoilState(isAuthorizedState);
+  const isLoading = useSelector(authSelectors.isLoading);
+  const error = useSelector(authSelectors.error);
 
-  const [isLoading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const dispatch = useDispatch();
 
-  const {
-    handleSubmit,
-    handleBlur,
-    handleChange,
-    isSubmitting,
-    values,
-  } = useFormik({
+  const { handleSubmit, handleBlur, handleChange, values } = useFormik({
     initialValues: singInValues,
-    onSubmit: async (credentials, actions) => {
-      setLoading(true);
-      actions.setSubmitting(false);
-
-      try {
-        await AuthService.signIn(credentials);
-
-        setAuthorized(true);
-      } catch (error) {
-        setErrorMessage(error.message);
-      }
-
-      setLoading(false);
+    onSubmit: credentials => {
+      dispatch(signIn(credentials));
     },
   });
 
-  const resetErrorMessage = () => setErrorMessage('');
+  useEffect(() => {
+    return () => {
+      dispatch(resetError());
+    };
+  }, [dispatch]);
+
+  const handleResetError = () => dispatch(resetError());
 
   return (
-    <S.Form onChange={resetErrorMessage} onSubmit={handleSubmit}>
+    <S.Form onChange={handleResetError} onSubmit={handleSubmit}>
       <S.Input
         name="username"
         value={values.username}
@@ -64,12 +52,12 @@ const SignIn: React.FC = () => {
       <S.SubmitButton
         block
         type="primary"
-        loading={isLoading || isSubmitting}
+        loading={isLoading}
         htmlType="submit"
       >
         Sign In
       </S.SubmitButton>
-      {errorMessage && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
+      {error && <S.ErrorMessage>{error.message}</S.ErrorMessage>}
       Or
       <Link to={Routes.SignUp}> Sign Up </Link>
       now!
