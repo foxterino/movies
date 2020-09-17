@@ -1,4 +1,4 @@
-export { signUp, signIn } from './Actions';
+export { signUp, signIn, signOut } from './Actions';
 export { authSelectors } from './Selectors';
 export {
   authFailure,
@@ -6,4 +6,5 @@ export {
   authSuccess,
   processAuth,
   resetError,
+  logoutSuccess,
 } from './Slice';

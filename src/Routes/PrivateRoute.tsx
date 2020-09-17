@@ -1,7 +1,7 @@
 import React, { ComponentType } from 'react';
 import { Routes } from './Routes';
 import { useSelector } from 'react-redux';
-import { authSelectors } from '../State/ducks/Auth';
+import { authSelectors } from '../State/Ducks/Auth';
 import { RouteComponentProps, Redirect } from '@reach/router';
 
 interface IPrivateRoute extends RouteComponentProps {

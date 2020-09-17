@@ -5,7 +5,7 @@ import { Link } from '@reach/router';
 import { SignInStyles as S } from './Styles';
 import { ISignUpValues } from '../../Api/Types/Auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelectors, resetError, signUp } from '../../State/ducks/Auth';
+import { authSelectors, resetError, signUp } from '../../State/Ducks/Auth';
 
 const singUpValues: ISignUpValues = {
   email: '',
