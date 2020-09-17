@@ -56,5 +56,6 @@ module.exports = {
       'warn',
       { additionalHooks: 'useRecoilCallback' },
     ],
+    'no-param-reassign': 'off',
   },
 };
