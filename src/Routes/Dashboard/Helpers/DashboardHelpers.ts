@@ -1,4 +1,4 @@
-import { range } from '../../../../Utils';
+import { range } from '../../../Utils';
 
 export const genres = [
   'Horror',

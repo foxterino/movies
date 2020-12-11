@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { List } from 'antd';
-import { colors } from '../../../Theme/Colors';
+import { colors } from '../../Theme/Colors';
 
 export const DashboardStyles = {
   Container: styled.div`
