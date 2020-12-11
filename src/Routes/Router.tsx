@@ -1,4 +1,5 @@
 import React from 'react';
+import { Movie } from './Movie';
 import { Routes } from './Routes';
 import { SignUp } from './SignUp';
 import { SignIn } from './SignIn';
@@ -12,6 +13,7 @@ const Router: React.FC = () => (
     <PublicRoute path={Routes.SignUp} component={SignUp} />
     <PublicRoute path={Routes.SignIn} component={SignIn} />
     <PrivateRoute path={Routes.Dashboard} component={Dashboard} />
+    <PrivateRoute path={`${Routes.Movie}/:id`} component={Movie} />
   </ReachRouter>
 );
 

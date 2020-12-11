@@ -5,8 +5,8 @@ const config = merge(baseConfig, {
   devServer: {
     contentBase: '../build/client',
     hot: true,
-    historyApiFallback: true
-  }
+    historyApiFallback: true,
+  },
 });
 
 export default (_env: any, argv: any) => {

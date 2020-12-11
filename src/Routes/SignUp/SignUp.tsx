@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { Routes } from '../Routes';
 import { Link } from '@reach/router';
-import { SignInStyles as S } from './Styles';
+import { SignUpStyles as S } from './Styles';
 import { ISignUpValues } from '../../Api/Types/Auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { authSelectors, resetError, signUp } from '../../State/Ducks/Auth';
@@ -35,7 +35,7 @@ const SignUp: React.FC = () => {
   const handleResetError = () => dispatch(resetError());
 
   return (
-    <div>
+    <S.Container>
       <S.Form onChange={handleResetError} onSubmit={handleSubmit}>
         <S.Input
           name="email"
@@ -70,7 +70,7 @@ const SignUp: React.FC = () => {
         Already have an account?
         <Link to={Routes.SignIn}> Sign In</Link>
       </S.Form>
-    </div>
+    </S.Container>
   );
 };
 

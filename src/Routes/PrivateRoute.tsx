@@ -8,10 +8,15 @@ interface IPrivateRoute extends RouteComponentProps {
   component: ComponentType<any>;
 }
 
-const PrivateRoute = ({ component: Component }: IPrivateRoute) => {
+const PrivateRoute = ({ component: Component, ...props }: IPrivateRoute) => {
   const isAuthorized = useSelector(authSelectors.isAuthorized);
 
-  return isAuthorized ? <Component /> : <Redirect noThrow to={Routes.SignIn} />;
+  return isAuthorized ? (
+    // eslint-disable-next-line react/jsx-props-no-spreading
+    <Component {...props} />
+  ) : (
+    <Redirect noThrow to={Routes.SignIn} />
+  );
 };
 
 export { PrivateRoute };

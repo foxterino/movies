@@ -57,5 +57,6 @@ module.exports = {
       { additionalHooks: 'useRecoilCallback' },
     ],
     'no-param-reassign': 'off',
+    camelcase: 'off',
   },
 };

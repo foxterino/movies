@@ -8,7 +8,8 @@
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "downlevelIteration": true
   },
   "exclude": ["**/*.spec.ts", "**/node_modules/**"]
 }

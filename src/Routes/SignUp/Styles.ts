@@ -1,7 +1,13 @@
 import styled from '@emotion/styled';
 import { Button, Input } from 'antd';
 
-export const SignInStyles = {
+export const SignUpStyles = {
+  Container: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  `,
   Form: styled.form`
     max-width: 400px;
   `,

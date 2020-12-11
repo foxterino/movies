@@ -1,7 +1,8 @@
 import React from 'react';
-import { Button } from 'antd';
 import { useDispatch } from 'react-redux';
+import { Search } from './Components/Search';
 import { signOut } from '../State/Ducks/Auth';
+import { Button, Layout as AntdLayout } from 'antd';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -9,12 +10,12 @@ const Header: React.FC = () => {
   const handleSignOut = () => dispatch(signOut());
 
   return (
-    <header>
-      Header
+    <AntdLayout.Header>
+      <Search />
       <Button type="link" onClick={handleSignOut}>
         Logout
       </Button>
-    </header>
+    </AntdLayout.Header>
   );
 };
 

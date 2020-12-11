@@ -20,10 +20,12 @@ const fetch = async <T>(options: AxiosRequestConfig): Promise<T> => {
   }
 };
 
-export const get = <T = any>(url: string) =>
+export const get = <T = any>(url: string, params?: any) =>
   fetch<T>({
     url,
+    method: 'GET',
     baseURL,
+    params,
     withCredentials: true,
   });
 

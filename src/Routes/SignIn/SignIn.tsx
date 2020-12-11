@@ -34,34 +34,36 @@ const SignIn: React.FC = () => {
   const handleResetError = () => dispatch(resetError());
 
   return (
-    <S.Form onChange={handleResetError} onSubmit={handleSubmit}>
-      <S.Input
-        name="username"
-        value={values.username}
-        placeholder="Username"
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <S.PasswordInput
-        name="password"
-        value={values.password}
-        placeholder="Password"
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <S.SubmitButton
-        block
-        type="primary"
-        loading={isLoading}
-        htmlType="submit"
-      >
-        Sign In
-      </S.SubmitButton>
-      {error && <S.ErrorMessage>{error.message}</S.ErrorMessage>}
-      Or
-      <Link to={Routes.SignUp}> Sign Up </Link>
-      now!
-    </S.Form>
+    <S.Container>
+      <S.Form onChange={handleResetError} onSubmit={handleSubmit}>
+        <S.Input
+          name="username"
+          value={values.username}
+          placeholder="Username"
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <S.PasswordInput
+          name="password"
+          value={values.password}
+          placeholder="Password"
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+        <S.SubmitButton
+          block
+          type="primary"
+          loading={isLoading}
+          htmlType="submit"
+        >
+          Sign In
+        </S.SubmitButton>
+        {error && <S.ErrorMessage>{error.message}</S.ErrorMessage>}
+        Or
+        <Link to={Routes.SignUp}> Sign Up </Link>
+        now!
+      </S.Form>
+    </S.Container>
   );
 };
 

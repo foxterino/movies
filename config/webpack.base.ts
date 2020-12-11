@@ -3,6 +3,7 @@ import { resolve } from 'path';
 import { Configuration } from 'webpack';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 
+// eslint-disable-next-line import/no-default-export
 export default {
   entry: ['react-hot-loader/patch', './src/index.tsx'],
   output: {
