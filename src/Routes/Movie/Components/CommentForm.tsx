@@ -9,31 +9,25 @@ export interface ICommentFormProps {
 }
 
 const CommentForm: React.FC<ICommentFormProps> = ({ movieId }) => {
-  const [value, setValue] = useState('');
+  const [text, setText] = useState('');
   const loading = useSelector(moviesSelectors.commentLoading);
 
   const dispatch = useDispatch();
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) =>
-    setValue(event.target.value);
+    setText(event.target.value);
 
-  const resetValue = () => setValue('');
+  const clearText = () => setText('');
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    try {
-      dispatch(addComment({ movieId, text: value }, resetValue));
-
-      setValue('');
-    } catch (error) {
-      setValue(value);
-    }
+    dispatch(addComment({ movieId, text }, clearText));
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <S.TextArea rows={4} onChange={handleChange} value={value} />
+      <S.TextArea rows={4} onChange={handleChange} value={text} />
       <Button htmlType="submit" loading={loading} type="primary">
         Add Comment
       </Button>

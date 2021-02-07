@@ -35,9 +35,9 @@ const MoviesList: React.FC = () => {
 
   useEffect(() => {
     const { page, pageSize } = paging;
-    const newNumberOfPages = Math.ceil(total / pageSize);
+    const numberOfPages = Math.ceil(total / pageSize);
 
-    if (total && newNumberOfPages < page + 1) {
+    if (total && numberOfPages < page + 1) {
       setPaging({ page: 0, pageSize });
     }
   }, [total, paging]);
